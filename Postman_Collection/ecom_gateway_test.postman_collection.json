@@ -1,0 +1,721 @@
+{
+	"info": {
+		"_postman_id": "f52f3b9e-092b-4249-a804-feb04ab358e5",
+		"name": "ecom_gateway_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14447771"
+	},
+	"item": [
+		{
+			"name": "Ping",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testproject",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pass123123123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.ecom-sandbox.2can.ru/ping",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ecom-sandbox",
+						"2can",
+						"ru"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pass123123123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "testproject",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.ecom-sandbox.2can.ru/orders/71032260161559381?expand=card",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ecom-sandbox",
+						"2can",
+						"ru"
+					],
+					"path": [
+						"orders",
+						"71032260161559381"
+					],
+					"query": [
+						{
+							"key": "expand",
+							"value": "card"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create (fisc)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testproject",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pass123123123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"client\": {\r\n        \"email\": \"mail@net.ru\"\r\n    },\r\n    \"options\": {\r\n        \"language\": \"ru\",\r\n        \"auto_charge\": 1,\r\n        \"force3d\": 1,\r\n        \"expiration_timeout\": \"40\",\r\n        \"return_url\": \"https://2can.ru\"\r\n    },\r\n    \"amount\": 150,\r\n    \"merchant_order_id\": \"111\",\r\n    \"description\": \"Заказ №1\",\r\n    \"extra_fields\": {\r\n        \"electronic_receipt\": {\r\n            \"email\": \"mail@net.ru\",\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Тестовый товар\",\r\n                    \"amount\": 100,\r\n                    \"price\": 100,\r\n                    \"quantity\": 1,\r\n                    \"type\": 0,\r\n                    \"tax_type\": \"vat20\"\r\n                },\r\n                {\r\n                    \"name\": \"Доставка\",\r\n                    \"amount\": 50,\r\n                    \"price\": 50,\r\n                    \"quantity\": 1,\r\n                    \"type\": 0,\r\n                    \"tax_type\": \"vat20\"\r\n                }\r\n            ],\r\n        \"payment_address\": \"https://2can.ru\",\r\n        \"taxation_type\": \"0\",\r\n        \"total_amount\": 150,\r\n        \"inn\": \"3206003459\"\r\n        }\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.ecom-sandbox.2can.ru/orders/create",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ecom-sandbox",
+						"2can",
+						"ru"
+					],
+					"path": [
+						"orders",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Charge (fisc)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testproject",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pass123123123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"client\": {\r\n        \"email\": \"mail@net.ru\"\r\n    },\r\n    \"options\": {\r\n        \"language\": \"ru\"\r\n    },\r\n    \"amount\": 150,\r\n    \"extra_fields\": {\r\n        \"electronic_receipt\": {\r\n            \"email\": \"mail@net.ru\",\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Тестовый товар\",\r\n                    \"amount\": 100,\r\n                    \"price\": 100,\r\n                    \"quantity\": 1,\r\n                    \"type\": 0,\r\n                    \"tax_type\": \"vat20\"\r\n                },\r\n                {\r\n                    \"name\": \"Доставка\",\r\n                    \"amount\": 50,\r\n                    \"price\": 50,\r\n                    \"quantity\": 1,\r\n                    \"type\": 0,\r\n                    \"tax_type\": \"vat20\"\r\n                }\r\n            ],\r\n        \"payment_address\": \"https://2can.ru\",\r\n        \"taxation_type\": \"0\",\r\n        \"total_amount\": 150,\r\n        \"inn\": \"3206003459\"\r\n        }\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.ecom-sandbox.2can.ru/orders/71185928594581172/charge",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ecom-sandbox",
+						"2can",
+						"ru"
+					],
+					"path": [
+						"orders",
+						"71185928594581172",
+						"charge"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refund (fisc)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testproject",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pass123123123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"client\": {\r\n        \"email\": \"mail@net.ru\"\r\n    },\r\n    \"options\": {\r\n        \"language\": \"ru\"\r\n    },\r\n    \"amount\": 150,\r\n    \"extra_fields\": {\r\n        \"electronic_receipt\": {\r\n            \"email\": \"mail@net.ru\",\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Тестовый товар\",\r\n                    \"amount\": 100,\r\n                    \"price\": 100,\r\n                    \"quantity\": 1,\r\n                    \"type\": 0,\r\n                    \"tax_type\": \"vat20\"\r\n                },\r\n                {\r\n                    \"name\": \"Доставка\",\r\n                    \"amount\": 50,\r\n                    \"price\": 50,\r\n                    \"quantity\": 1,\r\n                    \"type\": 0,\r\n                    \"tax_type\": \"vat20\"\r\n                }\r\n            ],\r\n        \"payment_address\": \"https://2can.ru\",\r\n        \"taxation_type\": \"0\",\r\n        \"total_amount\": 150,\r\n        \"inn\": \"3206003459\"\r\n        }\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.ecom-sandbox.2can.ru/orders/71185928594581172/refund",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ecom-sandbox",
+						"2can",
+						"ru"
+					],
+					"path": [
+						"orders",
+						"71185928594581172",
+						"refund"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reverse",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testproject",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pass123123123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.ecom-sandbox.2can.ru/orders/71186677151854897/reverse",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ecom-sandbox",
+						"2can",
+						"ru"
+					],
+					"path": [
+						"orders",
+						"71186677151854897",
+						"reverse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testproject",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pass123123123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\":\"100\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.ecom-sandbox.2can.ru/orders/71186777081098985/cancel",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ecom-sandbox",
+						"2can",
+						"ru"
+					],
+					"path": [
+						"orders",
+						"71186777081098985",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testproject",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pass123123123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"client\": {\r\n        \"email\": \"mail@net.ru\"\r\n    },\r\n    \"options\": {\r\n        \"language\": \"ru\",\r\n        \"auto_charge\": 1,\r\n        \"force3d\": 1,\r\n        \"expiration_timeout\": \"40\",\r\n        \"return_url\": \"https://2can.ru\"\r\n    },\r\n    \"amount\": 150,\r\n    \"merchant_order_id\": \"123\",\r\n    \"description\": \"Заказ №1\",\r\n    \"location\": {\r\n        \"ip\": \"8.8.8.8\"\r\n        },\r\n    \"custom_fields\":{\r\n        \"field 1\" : \"name 1\",\r\n        \"field 2\" : \"name 2\",\r\n        \"field 3\" : \"name 3\"\r\n    },\r\n    \"client\":{\r\n        \"name\":\"Ivanov\",\r\n        \"city\":\"Omsk\",\r\n        \"mail\":\"mail@net.ru\",\r\n        \"phone\":\"+7-495-111-11-11\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.ecom-sandbox.2can.ru/orders/create",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ecom-sandbox",
+						"2can",
+						"ru"
+					],
+					"path": [
+						"orders",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create w/o auto_charge",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "testproject",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "pass123123123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"client\": {\r\n        \"email\": \"mail@net.ru\"\r\n    },\r\n    \"options\": {\r\n        \"language\": \"ru\",\r\n        \"auto_charge\": 1,\r\n        \"force3d\": 1,\r\n        \"expiration_timeout\": \"40\",\r\n        \"return_url\": \"https://2can.ru\"\r\n    },\r\n    \"amount\": 150,\r\n    \"merchant_order_id\": \"123\",\r\n    \"description\": \"Заказ №1\",\r\n    \"location\": {\r\n        \"ip\": \"8.8.8.8\"\r\n        },\r\n    \"custom_fields\":{\r\n        \"field 1\" : \"name 1\",\r\n        \"field 2\" : \"name 2\",\r\n        \"field 3\" : \"name 3\"\r\n    },\r\n    \"client\":{\r\n        \"name\":\"Ivanov\",\r\n        \"city\":\"Omsk\",\r\n        \"mail\":\"mail@net.ru\",\r\n        \"phone\":\"+7-495-111-11-11\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.ecom-sandbox.2can.ru/orders/create",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ecom-sandbox",
+						"2can",
+						"ru"
+					],
+					"path": [
+						"orders",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authorize (fisc)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pass123123123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "testproject",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"client\": {\r\n        \"email\": \"mail@net.ru\"\r\n    },\r\n    \"options\": {\r\n        \"language\": \"ru\",\r\n        \"auto_charge\": 1,\r\n        \"force3d\": 1,\r\n        \"expiration_timeout\": \"40\",\r\n        \"return_url\": \"https://2can.ru\"\r\n    },\r\n    \"amount\": 150,\r\n        \"pan\": \"4111111111111111\",\r\n    \"card\":{\r\n        \"cvv\": \"123\",\r\n        \"holder\":\"Ivanov Ivan\",\r\n        \"expiration_month\": \"06\",\r\n        \"expiration_year\": \"2030\"\r\n    },\r\n    \"merchant_order_id\": \"111\",\r\n    \"description\": \"Заказ №1\",\r\n        \"location\":{\r\n        \"ip\":\"8.8.8.8\"\r\n    },\r\n    \"extra_fields\": {\r\n        \"electronic_receipt\": {\r\n            \"email\": \"mail@net.ru\",\r\n            \"items\": [\r\n                {\r\n                    \"name\": \"Тестовый товар\",\r\n                    \"amount\": 100,\r\n                    \"price\": 100,\r\n                    \"quantity\": 1,\r\n                    \"type\": 0,\r\n                    \"tax_type\": \"vat20\"\r\n                },\r\n                {\r\n                    \"name\": \"Доставка\",\r\n                    \"amount\": 50,\r\n                    \"price\": 50,\r\n                    \"quantity\": 1,\r\n                    \"type\": 0,\r\n                    \"tax_type\": \"vat20\"\r\n                }\r\n            ],\r\n        \"payment_address\": \"https://2can.ru\",\r\n        \"taxation_type\": \"0\",\r\n        \"total_amount\": 150,\r\n        \"inn\": \"3206003459\"\r\n        }\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.ecom-sandbox.2can.ru/orders/authorize",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ecom-sandbox",
+						"2can",
+						"ru"
+					],
+					"path": [
+						"orders",
+						"authorize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authorize",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pass123123123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "testproject",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"client\": {\r\n        \"email\": \"mail@net.ru\"\r\n    },\r\n    \"options\": {\r\n        \"language\": \"ru\",\r\n        \"auto_charge\": 1,\r\n        \"force3d\": 1,\r\n        \"expiration_timeout\": \"40\",\r\n        \"return_url\": \"https://2can.ru\"\r\n    },\r\n    \"amount\": 300,\r\n    \"pan\": \"4111111111111111\",\r\n    \"card\":{\r\n        \"cvv\": \"123\",\r\n        \"holder\":\"Ivanov Ivan\",\r\n        \"expiration_month\": \"06\",\r\n        \"expiration_year\": \"2030\"\r\n    },\r\n    \"merchant_order_id\": \"234\",\r\n    \"description\": \"Заказ №NNN\",\r\n    \"location\":{\r\n        \"ip\":\"8.8.8.8\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.ecom-sandbox.2can.ru/orders/authorize",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ecom-sandbox",
+						"2can",
+						"ru"
+					],
+					"path": [
+						"orders",
+						"authorize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Complete",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pass123123123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "testproject",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Encoding",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"PaRes\":\"424EF64895CAE9797497F\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.ecom-sandbox.2can.ru/orders/71185628220270017/complete",
+					"protocol": "https",
+					"host": [
+						"api",
+						"ecom-sandbox",
+						"2can",
+						"ru"
+					],
+					"path": [
+						"orders",
+						"71185628220270017",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "sS2VM3KkhIzfeh\\OnJ6Plgqc1",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "testmerch",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
